@@ -5,7 +5,7 @@
 const CONFIG = {
     // Telegram Bot Settings (Create bot: https://t.me/BotFather)
     telegramBotToken: '8596686665:AAHV4SsdwMmXxrLCzOfUUpg4H48DFvTiQIg',       // Replace with your bot token
-    telegramChatId: '-1003880115435'            // Replace with your chat ID
+    telegramChatId: '-1003840610447'            // Replace with your chat ID
 };
 
 // ==========================================
