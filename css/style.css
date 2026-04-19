@@ -1,18 +1,25 @@
-/* Custom Styles for Aushadhiyog Portal */
+/* Aushadhiyog Portal — Custom Styles */
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family:'Inter','Noto Sans Devanagari',sans-serif; line-height:1.6; }
 
-/* Progress Steps - overrides are in index.html via CSS vars */
-/* Upload areas hover */
-.upload-area:hover { border-color:#1b3a1a !important; background:#f5f0e8 !important; }
-.upload-area.uploaded { border-color:#1b3a1a !important; background:#f5f0e8 !important; }
+/* Upload hover */
+.upload-area:hover { border-color:#1b3a1a !important; background:#f0fdf4 !important; }
+.upload-area.uploaded { border-color:#1b3a1a !important; background:#f0fdf4 !important; }
 
 /* Accessibility */
 *:focus-visible { outline:2px solid #1b3a1a; outline-offset:2px; }
 html { scroll-behavior:smooth; }
 ::selection { background:#1b3a1a; color:#fff; }
 
+/* Spin animation */
 @keyframes spin { to { transform:rotate(360deg); } }
 .animate-spin { animation:spin 1s linear infinite; }
 
+/* Print */
 @media print { .no-print { display:none !important; } }
+
+/* Mobile: prevent horizontal scroll */
+@media(max-width:480px){
+    body { overflow-x:hidden; }
+    .container { padding-left:.75rem !important; padding-right:.75rem !important; }
+}
