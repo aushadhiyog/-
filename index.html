@@ -25,7 +25,7 @@
         /* Form */
         .form-group { margin-bottom:1.25rem; }
         .form-label { display:block; font-weight:600; color:#374151; margin-bottom:.4rem; font-size:.875rem; }
-        .form-input { width:100%; padding:.65rem .75rem; border:2px solid #e5e7eb; border-radius:.5rem; font-size:.875rem; transition:all .2s; background:#fff; }
+        .form-input { width:100%; padding:.65rem .75rem; border:2px solid #e5e7eb; border-radius:.5rem; font-size:.875rem; transition:all .2s; background:#fff; box-sizing:border-box; }
         .form-input:focus { outline:none; border-color:var(--brand); box-shadow:0 0 0 3px rgba(27,58,26,.1); }
         .form-step { display:none; }
         .form-step.active { display:block; animation:fadeIn .3s ease-in; }
@@ -49,7 +49,7 @@
 
         /* Crop */
         .crop-entry { position:relative; border:1px solid #e5e7eb; }
-        .remove-crop { position:absolute; top:.5rem; right:.5rem; background:#ef4444; color:#fff; border:none; border-radius:50%; width:28px; height:28px; cursor:pointer; font-size:1.25rem; line-height:1; transition:all .2s; }
+        .remove-crop { position:absolute; top:.5rem; right:.5rem; background:#ef4444; color:#fff; border:none; border-radius:50%; width:28px; height:28px; cursor:pointer; font-size:1.25rem; line-height:1; transition:all .2s; z-index:1; }
         .remove-crop:hover { background:#dc2626; transform:rotate(90deg); }
 
         @keyframes spin { to { transform:rotate(360deg); } }
@@ -58,14 +58,54 @@
         html { scroll-behavior:smooth; }
         ::selection { background:var(--brand); color:#fff; }
 
-        /* Language Modal */
-        #langModal { position:fixed; inset:0; background:rgba(0,0,0,.65); z-index:9999; display:flex; align-items:center; justify-content:center; }
-        .lang-btn { border:2px solid var(--brand); border-radius:.75rem; padding:1.25rem 2rem; font-size:1.1rem; font-weight:700; cursor:pointer; transition:all .3s; background:#fff; color:var(--brand); }
+        /* Language Modal — MUST be on top of everything */
+        #langModal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.65);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: all;
+        }
+        #langModal .lang-inner {
+            background: #fff;
+            border-radius: 1.5rem;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            max-width: 420px;
+            width: 90%;
+            box-shadow: 0 25px 60px rgba(0,0,0,.3);
+            position: relative;
+            z-index: 100000;
+        }
+        .lang-btn {
+            border: 2px solid var(--brand);
+            border-radius: .75rem;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all .3s;
+            background: #fff;
+            color: var(--brand);
+            min-width: 110px;
+        }
         .lang-btn:hover { background:var(--brand); color:#fff; transform:translateY(-2px); box-shadow:0 6px 16px rgba(27,58,26,.3); }
 
         /* T&C Modal */
-        #tncModal { position:fixed; inset:0; background:rgba(0,0,0,.75); z-index:9998; display:none; align-items:center; justify-content:center; padding:1rem; }
-        #tncModal.show { display:flex; }
+        #tncModal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.75);
+            z-index: 99998;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        #tncModal.show { display: flex; }
         .tnc-box { background:#fff; border-radius:1.25rem; max-width:620px; width:100%; max-height:90vh; display:flex; flex-direction:column; box-shadow:0 25px 60px rgba(0,0,0,.3); }
         .tnc-header { padding:1.5rem 1.5rem 1rem; border-bottom:2px solid #e5e7eb; flex-shrink:0; }
         .tnc-body { padding:1.25rem 1.5rem; overflow-y:auto; flex:1; font-size:.875rem; line-height:1.7; color:#374151; }
@@ -92,16 +132,15 @@
             .step-circle { width:32px; height:32px; font-size:.8rem; }
             .progress-line { display:none; }
             .form-input { font-size:16px; }
-            .bg-white.rounded-lg.shadow-lg { padding:1.25rem !important; }
-            .grid.md\:grid-cols-2 { grid-template-columns:1fr !important; }
-            .grid.md\:grid-cols-3 { grid-template-columns:1fr !important; }
-            .grid.grid-cols-2 { grid-template-columns:1fr !important; }
-            .btn-primary, .btn-secondary, .btn-submit { width:100%; text-align:center; }
-            .flex.justify-between.mt-8 { flex-direction:column; gap:.75rem; }
-            .flex.gap-3.items-center { flex-direction:column; align-items:stretch; }
-            .btn-download { width:100%; }
+            .form-card { padding:1rem !important; }
+            .btn-primary, .btn-secondary, .btn-submit, .btn-download { width:100%; text-align:center; box-sizing:border-box; }
+            .nav-buttons { flex-direction:column !important; gap:.75rem !important; }
+            .nav-right { flex-direction:column !important; width:100% !important; }
             .tnc-box { max-height:95vh; border-radius:.75rem; }
-            .crop-entry .grid.md\:grid-cols-3 { grid-template-columns:1fr !important; }
+            .crop-entry { padding-top:2.5rem !important; }
+            .lang-btn { width:100%; }
+            .lang-btn-row { flex-direction:column !important; }
+            .whatsapp-bar { flex-direction:column !important; }
         }
 
         @media print { .no-print { display:none !important; } }
@@ -111,14 +150,14 @@
 
 <!-- ========== LANGUAGE SELECTION MODAL ========== -->
 <div id="langModal">
-    <div style="background:#fff;border-radius:1.5rem;padding:2.5rem 2rem;text-align:center;max-width:420px;width:90%;box-shadow:0 25px 60px rgba(0,0,0,.3);">
+    <div class="lang-inner">
         <div style="width:72px;height:72px;margin:0 auto 1.25rem;border-radius:50%;overflow:hidden;background:var(--brand);display:flex;align-items:center;justify-content:center;">
-            <img src="Logo.png" alt="Logo" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
-            <svg style="width:36px;height:36px;color:#fff;fill:none;stroke:currentColor;display:none;" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+            <img src="Logo.png" alt="Logo" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <svg style="width:36px;height:36px;fill:none;stroke:#fff;display:none;" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
         </div>
         <h2 style="font-size:1.5rem;font-weight:700;color:var(--brand);margin-bottom:.4rem;">Aushadhiyog</h2>
         <p style="color:#6b7280;margin-bottom:1.75rem;font-size:.95rem;">भाषा चुनें / Select Language</p>
-        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <div class="lang-btn-row" style="display:flex;gap:1rem;justify-content:center;">
             <button class="lang-btn" onclick="setLanguage('hi')">हिंदी</button>
             <button class="lang-btn" onclick="setLanguage('en')">English</button>
         </div>
@@ -139,15 +178,15 @@
                 </div>
             </div>
         </div>
-        <div class="tnc-body" id="tncBody">
-            <!-- Content filled by JS based on language -->
-        </div>
+        <div class="tnc-body" id="tncBody"></div>
         <div class="tnc-footer">
             <label style="display:flex;align-items:flex-start;gap:.75rem;margin-bottom:1rem;cursor:pointer;">
                 <input type="checkbox" id="tncCheckbox" style="margin-top:.2rem;width:18px;height:18px;accent-color:var(--brand);flex-shrink:0;">
                 <span style="font-size:.875rem;color:#374151;font-weight:600;" id="tncCheckLabel">मैंने उपरोक्त नियम एवं शर्तें पढ़ ली हैं और मैं इनसे सहमत हूँ। *</span>
             </label>
-            <button id="tncProceedBtn" onclick="proceedFromTnc()" style="width:100%;padding:.8rem;background:#9ca3af;color:#fff;border:none;border-radius:.5rem;font-weight:700;font-size:.95rem;cursor:not-allowed;transition:all .3s;" disabled id="tncProceedBtn">
+            <button id="tncProceedBtn" onclick="proceedFromTnc()"
+                style="width:100%;padding:.8rem;background:#9ca3af;color:#fff;border:none;border-radius:.5rem;font-weight:700;font-size:.95rem;cursor:not-allowed;transition:all .3s;"
+                disabled>
                 <span id="tncProceedText">आगे बढ़ें →</span>
             </button>
         </div>
@@ -159,8 +198,8 @@
     <div class="container mx-auto px-4 py-3">
         <div class="flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <img src="Logo.png" alt="Aushadhiyog Logo" class="rounded-full object-cover" style="width:48px;height:48px;background:var(--brand);" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-                <div class="rounded-full items-center justify-center" style="background:var(--brand);display:none;width:48px;height:48px;" id="logoFallback">
+                <img src="Logo.png" alt="Aushadhiyog Logo" class="rounded-full object-cover" style="width:48px;height:48px;background:var(--brand);" onerror="this.style.display='none';document.getElementById('logoFallback').style.display='flex';">
+                <div id="logoFallback" class="rounded-full items-center justify-center" style="background:var(--brand);display:none;width:48px;height:48px;">
                     <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
                 </div>
                 <div>
@@ -208,19 +247,18 @@
     </div>
 
     <!-- Form Card -->
-    <div class="bg-white rounded-lg shadow-lg" style="padding:1.5rem;">
+    <div class="bg-white rounded-lg shadow-lg form-card" style="padding:1.5rem;">
         <form id="registrationForm">
 
             <!-- ===== STEP 1: Personal Info + Address (merged) ===== -->
             <div class="form-step active" data-step="1">
                 <h2 class="text-xl font-bold mb-5 border-b-2 pb-3" style="color:var(--brand);border-color:#1b3a1a30;">
                     <span style="display:flex;align-items:center;gap:8px;">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="28px" fill="currentColor"><path d="M319.33-246.67h321.34v-66.66H319.33v66.66Zm0-166.66h321.34V-480H319.33v66.67ZM226.67-80q-27 0-46.84-19.83Q160-119.67 160-146.67v-666.66q0-27 19.83-46.84Q199.67-880 226.67-880H574l226 226v507.33q0 27-19.83 46.84Q760.33-80 733.33-80H226.67Zm314-542.67v-190.66h-314v666.66h506.66v-476H540.67Z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 -960 960 960" width="26px" fill="currentColor"><path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Z"/></svg>
                         <span data-hi="व्यक्तिगत जानकारी" data-en="Personal Information">व्यक्तिगत जानकारी</span>
                     </span>
                 </h2>
 
-                <!-- Personal Fields -->
                 <div class="grid md:grid-cols-2 gap-4">
                     <div class="form-group md:col-span-2">
                         <label class="form-label" data-hi="पूरा नाम *" data-en="Full Name *">पूरा नाम *</label>
@@ -249,7 +287,7 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label" data-hi="मोबाइल नंबर *" data-en="Mobile Number *">मोबाइल नंबर *</label>
-                        <input type="tel" name="phone" required pattern="[0-9]{10}" class="form-input" data-phi="10 अंकों का नंबर" data-pen="10 digit number" placeholder="10 अंकों का नंबर">
+                        <input type="tel" name="phone" required pattern="[0-9]{10}" maxlength="10" class="form-input" data-phi="10 अंकों का नंबर" data-pen="10 digit number" placeholder="10 अंकों का नंबर">
                     </div>
                 </div>
 
@@ -273,15 +311,15 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label" data-hi="प्रखंड *" data-en="Block *">प्रखंड *</label>
-                        <input type="text" name="block" id="blockInput" required class="form-input" data-phi="प्रखंड/ब्लॉक का नाम" data-pen="Block name" placeholder="प्रखंड/ब्लॉक का नाम">
+                        <input type="text" name="block" required class="form-input" data-phi="प्रखंड/ब्लॉक का नाम" data-pen="Block name" placeholder="प्रखंड/ब्लॉक का नाम">
                     </div>
                     <div class="form-group">
                         <label class="form-label" data-hi="पंचायत *" data-en="Panchayat *">पंचायत *</label>
-                        <input type="text" name="panchayat" id="panchayatInput" required class="form-input" data-phi="पंचायत का नाम" data-pen="Panchayat name" placeholder="पंचायत का नाम">
+                        <input type="text" name="panchayat" required class="form-input" data-phi="पंचायत का नाम" data-pen="Panchayat name" placeholder="पंचायत का नाम">
                     </div>
                     <div class="form-group md:col-span-2">
                         <label class="form-label" data-hi="ग्राम *" data-en="Village *">ग्राम *</label>
-                        <input type="text" name="village" id="villageInput" required class="form-input" data-phi="गाँव का नाम" data-pen="Village name" placeholder="गाँव का नाम">
+                        <input type="text" name="village" required class="form-input" data-phi="गाँव का नाम" data-pen="Village name" placeholder="गाँव का नाम">
                     </div>
                 </div>
             </div>
@@ -315,7 +353,7 @@
                 <div class="grid md:grid-cols-2 gap-4 mb-5">
                     <div class="form-group">
                         <label class="form-label" data-hi="क्षेत्र (एकड़)" data-en="Area (Acres)">क्षेत्र (एकड़)</label>
-                        <input type="number" name="unirrigatedArea" step="0.01" min="0" class="form-input" data-phi="एकड़ में (0 अगर नहीं है)" data-pen="In acres (0 if none)" placeholder="0 अगर नहीं है">
+                        <input type="number" name="unirrigatedArea" step="0.01" min="0" class="form-input" data-phi="0 अगर नहीं है" data-pen="0 if none" placeholder="0 अगर नहीं है">
                     </div>
                     <div class="form-group">
                         <label class="form-label" data-hi="स्वामित्व" data-en="Ownership">स्वामित्व</label>
@@ -428,8 +466,8 @@
                 </div>
 
                 <!-- WhatsApp Contact -->
-                <div class="rounded-lg p-3 mb-5 flex flex-wrap items-center gap-3" style="background:#fff8e1;border:2px solid #f59e0b;">
-                    <div class="flex-1 min-w-0">
+                <div class="whatsapp-bar rounded-lg p-3 mb-5" style="background:#fff8e1;border:2px solid #f59e0b;display:flex;flex-wrap:wrap;align-items:center;gap:.75rem;">
+                    <div style="flex:1;min-width:0;">
                         <p class="text-sm font-medium" style="color:#92400e;" data-hi="नोट: किसी भी जानकारी के लिए आप हमसे WhatsApp पर संपर्क कर सकते हैं।" data-en="Note: For any information you can contact us on WhatsApp.">नोट: किसी भी जानकारी के लिए आप हमसे WhatsApp पर संपर्क कर सकते हैं।</p>
                     </div>
                     <a href="https://wa.me/917250915077" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg font-semibold text-sm text-white" style="background:#25D366;white-space:nowrap;text-decoration:none;">
@@ -438,11 +476,11 @@
                     </a>
                 </div>
 
-                <!-- Terms & Conditions Checkbox -->
+                <!-- Terms & Conditions Consent -->
                 <div class="border-2 rounded-lg p-4 mb-4" style="background:#f5f0e8;border-color:#1b3a1a40;">
                     <h3 class="font-semibold mb-3" style="color:var(--brand);font-size:.95rem;">📜 <span data-hi="नियम एवं शर्तें" data-en="Terms & Conditions">नियम एवं शर्तें</span></h3>
                     <p class="text-sm text-gray-600 mb-3" data-hi="कृपया हमारी नियम एवं शर्तें पढ़ें और सहमति दें।" data-en="Please read our Terms & Conditions and give your consent.">कृपया हमारी नियम एवं शर्तें पढ़ें और सहमति दें।</p>
-                    <button type="button" onclick="showTncModal()" style="background:var(--brand);color:#fff;padding:.5rem 1.25rem;border:none;border-radius:.4rem;font-size:.85rem;font-weight:600;cursor:pointer;margin-bottom:.85rem;">
+                    <button type="button" onclick="showTncModalForm()" style="background:var(--brand);color:#fff;padding:.5rem 1.25rem;border:none;border-radius:.4rem;font-size:.85rem;font-weight:600;cursor:pointer;margin-bottom:.85rem;display:inline-block;">
                         <span data-hi="📄 नियम एवं शर्तें पढ़ें" data-en="📄 Read Terms & Conditions">📄 नियम एवं शर्तें पढ़ें</span>
                     </button>
                     <div>
@@ -455,11 +493,11 @@
             </div>
 
             <!-- Navigation Buttons -->
-            <div class="flex justify-between mt-6 pt-5 border-t-2 border-gray-200 gap-3 flex-wrap">
+            <div class="nav-buttons flex justify-between mt-6 pt-5 border-t-2 border-gray-200 gap-3" style="flex-wrap:wrap;">
                 <button type="button" id="prevBtn" class="btn-secondary" style="display:none;" data-hi="← पिछला" data-en="← Previous">← पिछला</button>
                 <div class="flex-1"></div>
-                <div class="flex flex-col items-end gap-2 w-full md:w-auto">
-                    <div class="flex gap-3 items-center flex-wrap justify-end w-full">
+                <div class="nav-right" style="display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;width:auto;">
+                    <div style="display:flex;gap:.75rem;flex-wrap:wrap;justify-content:flex-end;">
                         <button type="button" id="downloadPdfBtn" class="btn-download" style="display:none;" onclick="downloadPDFPreview()" data-hi="📥 PDF डाउनलोड" data-en="📥 Download PDF">📥 PDF डाउनलोड</button>
                         <button type="button" id="nextBtn" class="btn-primary" data-hi="अगला →" data-en="Next →">अगला →</button>
                         <button type="submit" id="submitBtn" class="btn-submit" style="display:none;">
@@ -470,9 +508,9 @@
                             </span>
                         </button>
                     </div>
+                    <p id="submitErrorMsg" style="display:none;color:#dc2626;font-size:.85rem;font-weight:700;text-align:right;">⚠️ <span data-hi="कृपया सभी जरूरी फील्ड भरें।" data-en="Please fill all required fields.">कृपया सभी जरूरी फील्ड भरें।</span></p>
                 </div>
             </div>
-            <p id="submitErrorMsg" style="display:none;color:#dc2626;font-size:.9rem;font-weight:700;text-align:right;margin-top:.5rem;">⚠️ कृपया सभी जरूरी फील्ड भरें।</p>
         </form>
     </div>
 
