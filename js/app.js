@@ -1,20 +1,9 @@
 // ==========================================
-// CONFIGURATION — YE VALUES APNI DALNI HAIN
+// CONFIGURATION
 // ==========================================
-// Telegram Bot Token kaise milega:
-//   1. Telegram me @BotFather se baat karo
-//   2. /newbot command do ya apna existing bot open karo
-//   3. Bot ka token copy karo — format: 123456789:AAxxxxxxxxxxxxxxxxxxxxx
-//
-// Chat ID kaise milega:
-//   1. Bot ko us group/channel me add karo jahan PDF chahiye
-//   2. Group ke liye: @getidsbot se group ID lo — format: -100xxxxxxxxxx
-//   3. Ya browser me: https://api.telegram.org/bot<TOKEN>/getUpdates
-//      — koi bhi message bhejo group me, response me "chat":{"id":...} milega
-
 const CONFIG = {
-    telegramBotToken: '8596686665:AAHV4SsdwMmXxrLCzOfUUpg4H48DFvTiQIg',   // e.g. 7123456789:AABBccDDeeFFggHH...
-    telegramChatId:   '-1003840610447'       // e.g. -1001234567890
+    telegramBotToken: '8596686665:AAHV4SsdwMmXxrLCzOfUUpg4H48DFvTiQIg',
+    telegramChatId:   '-1003840610447'
 };
 
 // ==========================================
@@ -35,7 +24,7 @@ const TNC_CONTENT = {
         checkLabel: 'मैंने उपरोक्त नियम एवं शर्तें पढ़ ली हैं और मैं इनसे सहमत हूँ। *',
         proceedText: 'सहमत हूँ और आगे बढ़ें →',
         body: `
-            <p style="background:#f5f0e8;padding:.75rem;border-radius:.5rem;border-left:4px solid #1b3a1a;font-weight:600;color:#1b3a1a;">
+            <p style="background:#f5f0e8;padding:.75rem;border-radius:.5rem;border-left:4px solid #1b3a1a;font-weight:600;color:#1b3a1a;margin-bottom:1rem;">
                 Aushadhiyog Platform Pvt. Ltd. के किसान पंजीकरण पोर्टल पर आपका स्वागत है। आगे बढ़ने से पहले कृपया निम्नलिखित नियम एवं शर्तें ध्यानपूर्वक पढ़ें।
             </p>
 
@@ -62,28 +51,36 @@ const TNC_CONTENT = {
                 <li>प्राकृतिक आपदा, बाजार उतार-चढ़ाव या अन्य बाहरी कारणों से होने वाले नुकसान के लिए कंपनी जिम्मेदार नहीं होगी।</li>
             </ul>
 
-            <h3>4. डेटा गोपनीयता</h3>
+            <h3>4. उत्पादन एवं विपणन</h3>
+            <ul>
+                <li>किसान Aushadhiyog द्वारा अनुमोदित औषधीय फसलें उगाने के लिए स्वतंत्र रूप से सहमत हो रहे हैं।</li>
+                <li>फसल की गुणवत्ता एवं मानकों का पालन किसान की जिम्मेदारी होगी।</li>
+                <li>कंपनी उत्पाद का उचित मूल्यांकन कर भुगतान करेगी।</li>
+                <li>किसान तीसरे पक्ष को उत्पाद बेचने से पूर्व कंपनी को सूचित करेंगे।</li>
+            </ul>
+
+            <h3>5. डेटा गोपनीयता</h3>
             <ul>
                 <li>पंजीकरण में दी गई जानकारी केवल कृषि सहयोग एवं भुगतान प्रक्रिया के लिए उपयोग की जाएगी।</li>
                 <li>किसान की व्यक्तिगत जानकारी तृतीय पक्ष को बिना अनुमति साझा नहीं की जाएगी, सिवाय सरकारी आवश्यकता के।</li>
                 <li>हम आपकी जानकारी सुरक्षित रखने के लिए उचित तकनीकी उपाय अपनाते हैं।</li>
             </ul>
 
-            <h3>5. अनुबंध की अवधि एवं समाप्ति</h3>
+            <h3>6. अनुबंध की अवधि एवं समाप्ति</h3>
             <ul>
                 <li>पंजीकरण की अवधि एक फसल चक्र (सीजन) की होगी, जिसे आपसी सहमति से बढ़ाया जा सकता है।</li>
                 <li>किसान या कंपनी दोनों में से कोई भी 30 दिन की पूर्व सूचना देकर अनुबंध समाप्त कर सकता है।</li>
                 <li>अनुबंध उल्लंघन की स्थिति में कंपनी तत्काल पंजीकरण रद्द कर सकती है।</li>
             </ul>
 
-            <h3>6. विवाद समाधान</h3>
+            <h3>7. विवाद समाधान</h3>
             <ul>
                 <li>किसी भी विवाद की स्थिति में पहले आपसी बातचीत से समाधान का प्रयास किया जाएगा।</li>
                 <li>अनसुलझे विवादों का निपटारा गुमला, झारखंड के स्थानीय न्यायालय में होगा।</li>
                 <li>इन शर्तों की व्याख्या झारखंड राज्य के कानूनों के अनुसार होगी।</li>
             </ul>
 
-            <h3>7. बदलाव का अधिकार</h3>
+            <h3>8. बदलाव का अधिकार</h3>
             <p>Aushadhiyog इन नियम एवं शर्तों में बिना पूर्व सूचना के बदलाव कर सकती है। नवीनतम शर्तें वेबसाइट पर उपलब्ध रहेंगी।</p>
 
             <p style="margin-top:1rem;padding:.65rem;background:#e8f5e9;border-radius:.4rem;font-size:.82rem;color:#1b3a1a;font-weight:600;">
@@ -97,7 +94,7 @@ const TNC_CONTENT = {
         checkLabel: 'I have read and agree to the above Terms & Conditions. *',
         proceedText: 'I Agree & Proceed →',
         body: `
-            <p style="background:#f5f0e8;padding:.75rem;border-radius:.5rem;border-left:4px solid #1b3a1a;font-weight:600;color:#1b3a1a;">
+            <p style="background:#f5f0e8;padding:.75rem;border-radius:.5rem;border-left:4px solid #1b3a1a;font-weight:600;color:#1b3a1a;margin-bottom:1rem;">
                 Welcome to Aushadhiyog Platform Pvt. Ltd. Farmer Registration Portal. Please read the following Terms & Conditions carefully before proceeding.
             </p>
 
@@ -124,28 +121,36 @@ const TNC_CONTENT = {
                 <li>The company shall not be liable for losses due to natural calamities, market fluctuations, or other external factors.</li>
             </ul>
 
-            <h3>4. Data Privacy</h3>
+            <h3>4. Production & Marketing</h3>
+            <ul>
+                <li>Farmers are voluntarily agreeing to grow medicinal crops approved by Aushadhiyog.</li>
+                <li>Maintaining crop quality and standards is the farmer's responsibility.</li>
+                <li>The company will assess produce fairly and make timely payments.</li>
+                <li>Farmers shall inform the company before selling produce to any third party.</li>
+            </ul>
+
+            <h3>5. Data Privacy</h3>
             <ul>
                 <li>Information provided during registration will be used solely for agricultural support and payment processing purposes.</li>
                 <li>Personal information will not be shared with third parties without consent, except when required by law.</li>
                 <li>We adopt appropriate technical measures to keep your information secure.</li>
             </ul>
 
-            <h3>5. Duration & Termination</h3>
+            <h3>6. Duration & Termination</h3>
             <ul>
                 <li>Registration is valid for one crop cycle (season) and may be extended by mutual consent.</li>
                 <li>Either party may terminate the agreement with 30 days prior notice.</li>
                 <li>In case of agreement violation, the company may cancel registration immediately.</li>
             </ul>
 
-            <h3>6. Dispute Resolution</h3>
+            <h3>7. Dispute Resolution</h3>
             <ul>
                 <li>In case of any dispute, resolution will first be attempted through mutual discussion.</li>
                 <li>Unresolved disputes shall be settled in local courts at Gumla, Jharkhand.</li>
                 <li>These terms shall be governed by the laws of Jharkhand state.</li>
             </ul>
 
-            <h3>7. Right to Modify</h3>
+            <h3>8. Right to Modify</h3>
             <p>Aushadhiyog may update these Terms & Conditions without prior notice. The latest version will always be available on our website.</p>
 
             <p style="margin-top:1rem;padding:.65rem;background:#e8f5e9;border-radius:.4rem;font-size:.82rem;color:#1b3a1a;font-weight:600;">
@@ -159,6 +164,13 @@ const TNC_CONTENT = {
 // INITIALIZATION
 // ==========================================
 document.addEventListener('DOMContentLoaded', function () {
+    // Ensure TnC modal is hidden on load
+    const tncModal = document.getElementById('tncModal');
+    if (tncModal) {
+        tncModal.style.display = 'none';
+        tncModal.classList.remove('show');
+    }
+
     initializeForm();
     initializeCropManagement();
     initializePhotoUpload();
@@ -166,7 +178,7 @@ document.addEventListener('DOMContentLoaded', function () {
     initializePrevExpToggle();
     populateStates();
 
-    // TnC checkbox — enable/disable proceed button
+    // TnC checkbox in modal
     const tncCb = document.getElementById('tncCheckbox');
     if (tncCb) {
         tncCb.addEventListener('change', function () {
@@ -185,56 +197,21 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // ==========================================
-// TERMS & CONDITIONS MODAL
-// ==========================================
-function showTncModal() {
-    const modal = document.getElementById('tncModal');
-    const body = document.getElementById('tncBody');
-    const title = document.getElementById('tncTitle');
-    const sub = document.getElementById('tncSub');
-    const checkLabel = document.getElementById('tncCheckLabel');
-    const proceedBtn = document.getElementById('tncProceedBtn');
-    const proceedText = document.getElementById('tncProceedText');
-
-    const c = TNC_CONTENT[currentLang] || TNC_CONTENT['hi'];
-    title.textContent = c.title;
-    sub.textContent = c.sub;
-    body.innerHTML = c.body;
-    checkLabel.textContent = c.checkLabel;
-    proceedText.textContent = c.proceedText;
-
-    // Reset checkbox state
-    const cb = document.getElementById('tncCheckbox');
-    cb.checked = false;
-    proceedBtn.disabled = true;
-    proceedBtn.style.background = '#9ca3af';
-    proceedBtn.style.cursor = 'not-allowed';
-
-    modal.classList.add('show');
-}
-
-function proceedFromTnc() {
-    const cb = document.getElementById('tncCheckbox');
-    if (!cb.checked) return;
-    document.getElementById('tncModal').classList.remove('show');
-    // Also check the form's declaration checkbox
-    const formCheck = document.getElementById('declarationCheck');
-    if (formCheck) formCheck.checked = true;
-}
-
-// ==========================================
 // LANGUAGE SYSTEM
 // ==========================================
+
+// Called by lang modal buttons
 function setLanguage(lang) {
     currentLang = lang;
-
-    // Hide language modal, show T&C modal
-    document.getElementById('langModal').style.display = 'none';
     document.getElementById('langToggleBtn').textContent = lang === 'hi' ? 'EN' : 'हि';
     applyLanguage(lang);
 
-    // After language set, show T&C
-    showTncModal();
+    // Hide language modal
+    const langModal = document.getElementById('langModal');
+    langModal.style.display = 'none';
+
+    // Show T&C modal after language selection
+    showTncModalIntro();
 }
 
 function toggleLanguage() {
@@ -257,6 +234,59 @@ function applyLanguage(lang) {
     });
 }
 
+// Show T&C modal after language selection (intro flow)
+function showTncModalIntro() {
+    _openTncModal(false);
+}
+
+// Show T&C modal from form (re-read button)
+function showTncModalForm() {
+    _openTncModal(true);
+}
+
+function _openTncModal(fromForm) {
+    const modal = document.getElementById('tncModal');
+    const body = document.getElementById('tncBody');
+    const title = document.getElementById('tncTitle');
+    const sub = document.getElementById('tncSub');
+    const checkLabel = document.getElementById('tncCheckLabel');
+    const proceedBtn = document.getElementById('tncProceedBtn');
+    const proceedText = document.getElementById('tncProceedText');
+
+    const c = TNC_CONTENT[currentLang] || TNC_CONTENT['hi'];
+    title.textContent = c.title;
+    sub.textContent = c.sub;
+    body.innerHTML = c.body;
+    checkLabel.textContent = c.checkLabel;
+    proceedText.textContent = c.proceedText;
+
+    // Reset checkbox
+    const cb = document.getElementById('tncCheckbox');
+    cb.checked = false;
+    proceedBtn.disabled = true;
+    proceedBtn.style.background = '#9ca3af';
+    proceedBtn.style.cursor = 'not-allowed';
+
+    // Store whether opened from form
+    modal._fromForm = fromForm;
+
+    modal.style.display = 'flex';
+    modal.classList.add('show');
+}
+
+function proceedFromTnc() {
+    const cb = document.getElementById('tncCheckbox');
+    if (!cb.checked) return;
+
+    const modal = document.getElementById('tncModal');
+    modal.style.display = 'none';
+    modal.classList.remove('show');
+
+    // Also tick the form declaration checkbox
+    const formCheck = document.getElementById('declarationCheck');
+    if (formCheck) formCheck.checked = true;
+}
+
 // ==========================================
 // PHOTO UPLOAD
 // ==========================================
@@ -268,7 +298,12 @@ function initializePhotoUpload() {
         const file = this.files[0];
         if (!file) return;
         if (file.size > 500 * 1024) {
-            showNotification('फोटो का आकार 500KB से अधिक नहीं होना चाहिए', 'error');
+            showNotification(
+                currentLang === 'hi'
+                    ? 'फोटो का आकार 500KB से अधिक नहीं होना चाहिए'
+                    : 'Photo size should not exceed 500KB',
+                'error'
+            );
             this.value = '';
             return;
         }
@@ -316,7 +351,7 @@ function initializePrevExpToggle() {
     if (sel) {
         sel.addEventListener('change', function () {
             const box = document.getElementById('prevExpDetails');
-            if (box) box.style.display = this.value === 'हाँ' ? 'block' : 'none';
+            if (box) box.style.display = this.value === 'हाँ' || this.value === 'Yes' ? 'block' : 'none';
         });
     }
 }
@@ -366,10 +401,13 @@ function updateFormDisplay() {
         line.classList.toggle('active', index < currentStep - 1);
     });
 
+    const isLast = currentStep === totalSteps;
     document.getElementById('prevBtn').style.display = currentStep === 1 ? 'none' : 'block';
-    document.getElementById('nextBtn').style.display = currentStep === totalSteps ? 'none' : 'block';
-    document.getElementById('submitBtn').style.display = currentStep === totalSteps ? 'block' : 'none';
-    document.getElementById('downloadPdfBtn').style.display = currentStep === totalSteps ? 'block' : 'none';
+    document.getElementById('nextBtn').style.display = isLast ? 'none' : 'block';
+    document.getElementById('submitBtn').style.display = isLast ? 'block' : 'none';
+    document.getElementById('downloadPdfBtn').style.display = isLast ? 'block' : 'none';
+    const errMsg = document.getElementById('submitErrorMsg');
+    if (errMsg) errMsg.style.display = 'none';
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -383,6 +421,7 @@ function goToStep(stepNum) {
 
 function validateCurrentStep() {
     const stepEl = document.querySelector(`.form-step[data-step="${currentStep}"]`);
+    if (!stepEl) return true;
     const inputs = stepEl.querySelectorAll('input[required], select[required], textarea[required]');
     let isValid = true;
 
@@ -390,29 +429,33 @@ function validateCurrentStep() {
         if (input.type === 'checkbox') {
             if (!input.checked) {
                 isValid = false;
-                input.parentElement.style.color = '#ef4444';
+                if (input.parentElement) input.parentElement.style.color = '#ef4444';
             } else {
-                input.parentElement.style.color = '';
+                if (input.parentElement) input.parentElement.style.color = '';
             }
             return;
         }
-        if (!input.value.trim()) {
+        const val = input.value.trim();
+        if (!val) {
             isValid = false;
             input.style.borderColor = '#ef4444';
-            if (!input.nextElementSibling || !input.nextElementSibling.classList.contains('error-msg')) {
-                const err = document.createElement('p');
-                err.className = 'error-msg';
-                err.style.cssText = 'color:#ef4444;font-size:.8rem;margin-top:.2rem;';
-                err.textContent = currentLang === 'hi' ? 'यह फील्ड आवश्यक है' : 'This field is required';
-                input.parentNode.insertBefore(err, input.nextSibling);
+            // Add error message if not present
+            let errEl = input.parentNode.querySelector('.error-msg');
+            if (!errEl) {
+                errEl = document.createElement('p');
+                errEl.className = 'error-msg';
+                errEl.style.cssText = 'color:#ef4444;font-size:.78rem;margin-top:.2rem;';
+                input.insertAdjacentElement('afterend', errEl);
             }
+            errEl.textContent = currentLang === 'hi' ? 'यह फील्ड आवश्यक है' : 'This field is required';
         } else {
             input.style.borderColor = '';
-            const errMsg = input.nextElementSibling;
-            if (errMsg && errMsg.classList.contains('error-msg')) errMsg.remove();
+            const errEl = input.parentNode.querySelector('.error-msg');
+            if (errEl) errEl.remove();
         }
     });
 
+    // Photo required on step 4
     if (currentStep === 4 && !photoDataUrl) {
         isValid = false;
         showNotification(
@@ -426,6 +469,8 @@ function validateCurrentStep() {
             currentLang === 'hi' ? 'कृपया सभी आवश्यक फील्ड भरें' : 'Please fill all required fields',
             'error'
         );
+        const errMsg = document.getElementById('submitErrorMsg');
+        if (errMsg) errMsg.style.display = 'block';
     }
 
     return isValid;
@@ -451,15 +496,16 @@ function initializeCropManagement() {
     document.getElementById('addCropBtn').addEventListener('click', () => {
         const entry = document.createElement('div');
         entry.className = 'crop-entry bg-gray-50 rounded-lg p-4 mb-3';
+        entry.style.paddingTop = '2.5rem';
         entry.innerHTML = `
             <button type="button" class="remove-crop" onclick="this.parentElement.remove()">×</button>
             <div class="grid md:grid-cols-3 gap-3">
                 <div class="form-group">
-                    <label class="form-label">फसल का नाम *</label>
-                    <input type="text" name="cropName[]" required class="form-input" placeholder="जैसे: अश्वगंधा">
+                    <label class="form-label">${currentLang === 'hi' ? 'फसल का नाम *' : 'Crop Name *'}</label>
+                    <input type="text" name="cropName[]" required class="form-input" placeholder="${currentLang === 'hi' ? 'जैसे: अश्वगंधा' : 'e.g. Ashwagandha'}">
                 </div>
                 <div class="form-group">
-                    <label class="form-label">बुवाई माह *</label>
+                    <label class="form-label">${currentLang === 'hi' ? 'बुवाई माह *' : 'Sowing Month *'}</label>
                     <select name="sowingMonth[]" required class="form-input">
                         <option value="">माह चुनें</option>
                         <option>जनवरी</option><option>फरवरी</option><option>मार्च</option>
@@ -469,7 +515,7 @@ function initializeCropManagement() {
                     </select>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">कटाई माह *</label>
+                    <label class="form-label">${currentLang === 'hi' ? 'कटाई माह *' : 'Harvest Month *'}</label>
                     <select name="harvestMonth[]" required class="form-input">
                         <option value="">माह चुनें</option>
                         <option>जनवरी</option><option>फरवरी</option><option>मार्च</option>
@@ -500,7 +546,9 @@ async function handleFormSubmit(e) {
             updateFormDisplay();
             validateCurrentStep();
             showNotification(
-                `Tab ${s} mein kuch fields adhuri hain. Pehle unhe poora karein.`,
+                currentLang === 'hi'
+                    ? `Tab ${s} में कुछ fields अधूरी हैं।`
+                    : `Tab ${s} has incomplete fields.`,
                 'error'
             );
             return;
@@ -519,11 +567,13 @@ async function handleFormSubmit(e) {
         const formData = collectFormData();
         const pdfBlob = await generatePDF(formData);
         await sendPDFToTelegram(pdfBlob, formData);
-        // After successful send, go to success page or show message
         showSuccessScreen(formData.regNumber);
     } catch (error) {
         console.error('Submission error:', error);
-        showNotification('फॉर्म जमा करने में त्रुटि हुई। कृपया पुनः प्रयास करें। ' + error.message, 'error');
+        showNotification(
+            (currentLang === 'hi' ? 'फॉर्म जमा करने में त्रुटि: ' : 'Submission error: ') + error.message,
+            'error'
+        );
         submitBtn.disabled = false;
         submitText.style.display = 'inline';
         submitLoader.style.display = 'none';
@@ -531,7 +581,9 @@ async function handleFormSubmit(e) {
 }
 
 function showSuccessScreen(regNumber) {
-    document.querySelector('.container').innerHTML = `
+    const main = document.querySelector('.container');
+    if (!main) return;
+    main.innerHTML = `
         <div style="text-align:center;padding:3rem 1.5rem;background:#fff;border-radius:1rem;box-shadow:0 4px 24px rgba(0,0,0,.1);">
             <div style="width:80px;height:80px;background:#1b3a1a;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;">
                 <svg width="40" height="40" fill="none" stroke="#fff" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
@@ -565,28 +617,28 @@ function collectFormData() {
     return {
         regNumber: generateRegNumber(),
         regDate,
-        fullName:            fd.get('fullName') || '',
-        fatherName:          fd.get('fatherName') || '',
-        gender:              fd.get('gender') || '',
-        dob:                 fd.get('dob') ? formatDate(fd.get('dob')) : '',
-        age:                 fd.get('age') || '',
-        phone:               fd.get('phone') || '',
-        village:             fd.get('village') || '',
-        panchayat:           fd.get('panchayat') || '',
-        block:               fd.get('block') || '',
-        district:            fd.get('district') || '',
-        state:               fd.get('state') || '',
-        irrigatedArea:       fd.get('irrigatedArea') || '0',
-        irrigatedOwnership:  fd.get('irrigatedOwnership') || '',
-        unirrigatedArea:     fd.get('unirrigatedArea') || '0',
-        unirrigatedOwnership:fd.get('unirrigatedOwnership') || 'लागू नहीं',
-        shgMember:           fd.get('shgMember') || '',
-        shgName:             fd.get('shgName') || '',
+        fullName:             fd.get('fullName') || '',
+        fatherName:           fd.get('fatherName') || '',
+        gender:               fd.get('gender') || '',
+        dob:                  fd.get('dob') ? formatDate(fd.get('dob')) : '',
+        age:                  fd.get('age') || '',
+        phone:                fd.get('phone') || '',
+        village:              fd.get('village') || '',
+        panchayat:            fd.get('panchayat') || '',
+        block:                fd.get('block') || '',
+        district:             fd.get('district') || '',
+        state:                fd.get('state') || '',
+        irrigatedArea:        fd.get('irrigatedArea') || '0',
+        irrigatedOwnership:   fd.get('irrigatedOwnership') || '',
+        unirrigatedArea:      fd.get('unirrigatedArea') || '0',
+        unirrigatedOwnership: fd.get('unirrigatedOwnership') || 'लागू नहीं',
+        shgMember:            fd.get('shgMember') || '',
+        shgName:              fd.get('shgName') || '',
         crops,
-        previousMedicinal:   fd.get('previousMedicinal') || '',
-        prevExpDescription:  fd.get('prevExpDescription') || '',
-        photo:               photoDataUrl,
-        submittedAt:         new Date().toLocaleString('hi-IN', { timeZone: 'Asia/Kolkata' })
+        previousMedicinal:    fd.get('previousMedicinal') || '',
+        prevExpDescription:   fd.get('prevExpDescription') || '',
+        photo:                photoDataUrl,
+        submittedAt:          new Date().toLocaleString('hi-IN', { timeZone: 'Asia/Kolkata' })
     };
 }
 
@@ -602,7 +654,7 @@ function formatDate(dateStr) {
 }
 
 // ==========================================
-// PDF GENERATION (compact, no sensitive docs)
+// PDF GENERATION
 // ==========================================
 async function generatePDF(data) {
     const { jsPDF } = window.jspdf;
@@ -611,7 +663,6 @@ async function generatePDF(data) {
     const W = 210;
     const margin = 14;
     let y = 14;
-
     const BRAND_R = 27, BRAND_G = 58, BRAND_B = 26;
 
     function checkPage(needed) {
@@ -635,18 +686,19 @@ async function generatePDF(data) {
         doc.text(label, xL, yF);
         doc.setFont('helvetica', 'normal');
         const valX = xL + wL + 1;
-        doc.text(String(value || '-'), valX, yF, { maxWidth: wV });
+        const safeVal = String(value || '-');
+        doc.text(safeVal, valX, yF, { maxWidth: wV });
         doc.setDrawColor(200, 200, 200);
         doc.line(valX, yF + 0.5, valX + wV, yF + 0.5);
     }
 
-    // ===== HEADER BAR =====
+    // ===== HEADER =====
     doc.setFillColor(BRAND_R, BRAND_G, BRAND_B);
     doc.rect(0, 0, W, 16, 'F');
     doc.setTextColor(255, 255, 255);
     doc.setFontSize(12);
     doc.setFont('helvetica', 'bold');
-    doc.text('Aushadhiyog Pvt. Ltd.', W/2, 7, { align: 'center' });
+    doc.text('Aushadhiyog Platform Pvt. Ltd.', W/2, 7, { align: 'center' });
     doc.setFontSize(7);
     doc.setFont('helvetica', 'normal');
     doc.text('aushadhiyog@gmail.com | 7250915077 | NH-23, Palkoat Road, Gumla, Jharkhand', W/2, 12, { align: 'center' });
@@ -654,7 +706,7 @@ async function generatePDF(data) {
 
     y = 20;
 
-    // Form title
+    // Title
     doc.setFontSize(10);
     doc.setFont('helvetica', 'bold');
     doc.setTextColor(BRAND_R, BRAND_G, BRAND_B);
@@ -670,7 +722,7 @@ async function generatePDF(data) {
     doc.line(margin, y, W - margin, y);
     y += 4;
 
-    // Reg info + photo box
+    // Reg info + photo
     const photoBoxX = W - margin - 28;
     const photoBoxY = y;
     const photoBoxW = 28;
@@ -680,8 +732,7 @@ async function generatePDF(data) {
     doc.setFont('helvetica', 'bold');
     doc.text('Panjikaran Sankhya:', margin, y + 4);
     doc.setFont('helvetica', 'normal');
-    doc.text(data.regNumber, margin + 33, y + 4);
-
+    doc.text(data.regNumber, margin + 35, y + 4);
     doc.setFont('helvetica', 'bold');
     doc.text('Tithi:', margin, y + 10);
     doc.setFont('helvetica', 'normal');
@@ -692,8 +743,9 @@ async function generatePDF(data) {
     doc.setLineWidth(0.5);
     doc.rect(photoBoxX, photoBoxY, photoBoxW, photoBoxH);
     if (data.photo) {
-        try { doc.addImage(data.photo, 'JPEG', photoBoxX+0.5, photoBoxY+0.5, photoBoxW-1, photoBoxH-1); }
-        catch(e) {
+        try {
+            doc.addImage(data.photo, 'JPEG', photoBoxX+0.5, photoBoxY+0.5, photoBoxW-1, photoBoxH-1);
+        } catch(e) {
             doc.setFontSize(7); doc.setTextColor(150,150,150);
             doc.text('Photo', photoBoxX+photoBoxW/2, photoBoxY+photoBoxH/2, { align:'center' });
             doc.setTextColor(0,0,0);
@@ -711,41 +763,40 @@ async function generatePDF(data) {
 
     // ===== SECTION 1: Personal Details =====
     y = sectionTitle('1. Vyaktigat Vivaran (Personal Details)', y);
-    const col1 = margin, col2 = W/2 + 5;
+    const col2 = W/2 + 5;
 
-    field('Naam:', data.fullName, col1, y, 14, 72);
+    field('Naam:', data.fullName, margin, y, 14, 72);
     y += 7;
-    field('Pita/Pati:', data.fatherName, col1, y, 18, 68);
+    field('Pita/Pati:', data.fatherName, margin, y, 18, 68);
     y += 7;
-    field('Ling:', data.gender, col1, y, 12, 25);
-    field('Janm Tithi:', data.dob, col1+45, y, 20, 25);
-    field('Aayu:', data.age + ' Varsh', col1+95, y, 12, 20);
+    field('Ling:', data.gender, margin, y, 12, 25);
+    field('Janm Tithi:', data.dob, margin+45, y, 20, 25);
+    field('Aayu:', data.age + ' Varsh', margin+95, y, 12, 20);
     y += 7;
-    field('Mobile:', data.phone, col1, y, 16, 40);
+    field('Mobile:', data.phone, margin, y, 16, 40);
     y += 9;
 
     // ===== SECTION 2: Address =====
-    checkPage(40);
+    checkPage(38);
     y = sectionTitle('2. Pata Vivaran (Address)', y);
 
-    field('Gram:', data.village, col1, y, 12, 55);
+    field('Gram:', data.village, margin, y, 12, 55);
     field('Panchayat:', data.panchayat, col2, y, 22, 40);
     y += 7;
-    field('Prakhanda:', data.block, col1, y, 20, 47);
+    field('Prakhanda:', data.block, margin, y, 20, 47);
     field('Jila:', data.district, col2, y, 12, 50);
     y += 7;
-    field('Rajya:', data.state, col1, y, 14, 60);
+    field('Rajya:', data.state, margin, y, 14, 60);
     y += 9;
 
     // ===== SECTION 3: Land Details =====
     checkPage(40);
     y = sectionTitle('3. Bhoomi Vivaran (Land Details)', y);
 
-    // Table header
+    const lc = [margin, margin+50, margin+90];
     doc.setFillColor(240, 253, 244);
     doc.rect(margin, y, W-margin*2, 6, 'F');
     doc.setFontSize(8); doc.setFont('helvetica', 'bold');
-    const lc = [margin, margin+50, margin+90, margin+130];
     doc.text('Bhoomi Prakar', lc[0]+1, y+4);
     doc.text('Kshetra (Acre)', lc[1]+1, y+4);
     doc.text('Swamitva', lc[2]+1, y+4);
@@ -756,19 +807,19 @@ async function generatePDF(data) {
     doc.setFont('helvetica', 'normal');
     doc.rect(margin, y, W-margin*2, 6);
     doc.text('Sinchai (Irrigated)', lc[0]+1, y+4);
-    doc.text(data.irrigatedArea, lc[1]+1, y+4);
-    doc.text(data.irrigatedOwnership, lc[2]+1, y+4);
+    doc.text(String(data.irrigatedArea), lc[1]+1, y+4);
+    doc.text(String(data.irrigatedOwnership), lc[2]+1, y+4);
     y += 6;
     doc.rect(margin, y, W-margin*2, 6);
     doc.text('Asinchai (Unirrigated)', lc[0]+1, y+4);
-    doc.text(data.unirrigatedArea, lc[1]+1, y+4);
-    doc.text(data.unirrigatedOwnership, lc[2]+1, y+4);
+    doc.text(String(data.unirrigatedArea || '0'), lc[1]+1, y+4);
+    doc.text(String(data.unirrigatedOwnership || '-'), lc[2]+1, y+4);
     y += 9;
 
     // ===== SECTION 4: SHG/FPO =====
     checkPage(18);
     y = sectionTitle('4. Samuh / Sangathan (SHG/FPO)', y);
-    field('Sadasya:', data.shgMember, col1, y, 18, 20);
+    field('Sadasya:', data.shgMember, margin, y, 18, 20);
     if (data.shgMember === 'हाँ' && data.shgName) {
         field('Naam:', data.shgName, col2, y, 12, 55);
     }
@@ -778,10 +829,10 @@ async function generatePDF(data) {
     checkPage(30 + data.crops.length * 7);
     y = sectionTitle('5. Prastaavit Fasal Vivaran (Crop Details)', y);
 
+    const cc = [margin, margin+65, margin+115];
     doc.setFillColor(240, 253, 244);
     doc.rect(margin, y, W-margin*2, 6, 'F');
     doc.setFontSize(8); doc.setFont('helvetica', 'bold');
-    const cc = [margin, margin+65, margin+110, margin+150];
     doc.text('Fasal ka Naam', cc[0]+1, y+4);
     doc.text('Buwai Maah', cc[1]+1, y+4);
     doc.text('Katai Maah', cc[2]+1, y+4);
@@ -803,25 +854,25 @@ async function generatePDF(data) {
     // ===== SECTION 6: Previous Experience =====
     checkPage(20);
     y = sectionTitle('6. Poorv Anubhav (Previous Experience)', y);
-    field('Kya pehle Aushadhiya Fasal ugaai?', data.previousMedicinal, col1, y, 72, 20);
+    field('Kya pehle Aushadhiya Fasal ugaai?', data.previousMedicinal, margin, y, 72, 20);
     y += 7;
-    if (data.previousMedicinal === 'हाँ' && data.prevExpDescription) {
+    if ((data.previousMedicinal === 'हाँ' || data.previousMedicinal === 'Yes') && data.prevExpDescription) {
         doc.setFontSize(8); doc.setFont('helvetica', 'bold');
-        doc.text('Vivaran:', col1, y);
+        doc.text('Vivaran:', margin, y);
         doc.setFont('helvetica', 'normal');
         const lines = doc.splitTextToSize(data.prevExpDescription, W - margin*2 - 20);
-        doc.text(lines, col1 + 18, y);
+        doc.text(lines, margin + 18, y);
         y += lines.length * 4.5 + 2;
     }
     y += 3;
 
     // ===== SECTION 7: Declaration =====
     checkPage(28);
-    y = sectionTitle('7. Ghoshana (Declaration)', y);
+    y = sectionTitle('7. Ghoshana evam Niyam-Shartein (Declaration & T&C)', y);
     doc.setFontSize(7.5); doc.setFont('helvetica', 'normal');
-    const decl = 'Main yah ghoshit karta/karti hun ki di gayi sabhi jaankaari satya hai aur maine Aushadhiyog ke niyam evam shartein padh li hain tatha unse sahmat hun. Yadi koi jaankaari galat payi jaati hai, to panjikaran nirasht kiya ja sakta hai.';
+    const decl = 'Main yah ghoshit karta/karti hun ki di gayi sabhi jaankaari satya hai aur maine Aushadhiyog ke niyam evam shartein (Terms & Conditions) padh li hain tatha unse poori tarah sahmat hun. Galat jaankaari dene par panjikaran nirasht kiya ja sakta hai.';
     const declLines = doc.splitTextToSize(decl, W - margin*2 - 4);
-    doc.text(declLines, col1+2, y);
+    doc.text(declLines, margin+2, y);
     y += declLines.length * 4.2 + 6;
 
     // ===== SIGNATURES =====
@@ -835,21 +886,23 @@ async function generatePDF(data) {
     doc.setFontSize(7.5); doc.setFont('helvetica', 'bold');
     doc.text('Kisan Hastaakshar / Angutha Nishan', margin + sigW/2, y + 27, { align: 'center' });
     doc.text('Naam: ' + data.fullName, margin + 2, y + 24);
-    doc.text('Company Pratinidhi', margin + sigW + 10 + sigW/2, y + 27, { align: 'center' });
+    doc.text('Company Pratinidhi Hastaakshar', margin + sigW + 10 + sigW/2, y + 27, { align: 'center' });
     y += 32;
 
     // ===== FOOTER =====
     checkPage(10);
     doc.setFillColor(BRAND_R, BRAND_G, BRAND_B);
     doc.rect(0, y, W, 10, 'F');
-    doc.setTextColor(255, 255, 255); doc.setFontSize(7); doc.setFont('helvetica', 'normal');
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(7);
+    doc.setFont('helvetica', 'normal');
     doc.text(`Submitted: ${data.submittedAt} | Reg No: ${data.regNumber}`, W/2, y + 6, { align: 'center' });
 
     return doc.output('blob');
 }
 
 // ==========================================
-// DOWNLOAD PDF (for user)
+// DOWNLOAD PDF
 // ==========================================
 async function downloadPDFPreview() {
     try {
@@ -859,34 +912,25 @@ async function downloadPDFPreview() {
         const a = document.createElement('a');
         a.href = url;
         a.download = `Kisan_Registration_${formData.regNumber}.pdf`;
+        document.body.appendChild(a);
         a.click();
+        document.body.removeChild(a);
         URL.revokeObjectURL(url);
     } catch (e) {
-        showNotification('PDF download mein error: ' + e.message, 'error');
+        showNotification('PDF download error: ' + e.message, 'error');
     }
 }
 
 // ==========================================
 // SEND PDF TO TELEGRAM
 // ==========================================
-// HOW TO SET UP TELEGRAM:
-// 1. Open Telegram → search @BotFather → /newbot
-// 2. Follow steps to create/access your bot
-// 3. Copy the bot token shown (format: 123456:ABCdef...)
-// 4. Add the bot to your group/channel as ADMIN
-// 5. Send any message in the group
-// 6. Open: https://api.telegram.org/bot<YOUR_TOKEN>/getUpdates
-// 7. Look for "chat":{"id": -100xxxxxxxxx} — that's your chat_id
-// 8. Paste both values in CONFIG at top of this file
-
 async function sendPDFToTelegram(pdfBlob, data) {
     const fileName = `Kisan_Registration_${data.regNumber}.pdf`;
 
-    // Verify config is set
-    if (CONFIG.telegramBotToken.includes('APNA') || CONFIG.telegramChatId.includes('APNA')) {
-        console.warn('Telegram config not set. Please update CONFIG in app.js');
-        showNotification('Telegram config set nahi hai — app.js mein CONFIG update karein', 'error');
-        throw new Error('Telegram config missing');
+    if (!CONFIG.telegramBotToken || !CONFIG.telegramChatId ||
+        CONFIG.telegramBotToken.includes('APNA') || CONFIG.telegramChatId.includes('APNA')) {
+        console.warn('Telegram config not set.');
+        throw new Error('Telegram config missing — app.js mein CONFIG update karein');
     }
 
     const formDataTg = new FormData();
@@ -915,8 +959,7 @@ async function sendPDFToTelegram(pdfBlob, data) {
     const result = await response.json();
     if (!result.ok) {
         console.error('Telegram error:', result);
-        const errMsg = result.description || 'Unknown error';
-        throw new Error(`Telegram: ${errMsg}`);
+        throw new Error(`Telegram: ${result.description || 'Unknown error'}`);
     }
 }
 
@@ -924,16 +967,20 @@ async function sendPDFToTelegram(pdfBlob, data) {
 // NOTIFICATION
 // ==========================================
 function showNotification(message, type = 'info') {
-    const existing = document.querySelectorAll('.site-notification');
-    existing.forEach(n => n.remove());
+    document.querySelectorAll('.site-notification').forEach(n => n.remove());
 
     const bg = type === 'success' ? '#1b3a1a' : type === 'error' ? '#ef4444' : '#3b82f6';
     const n = document.createElement('div');
     n.className = 'site-notification';
-    n.style.cssText = `position:fixed;top:1rem;right:1rem;z-index:99999;padding:.875rem 1.25rem;border-radius:.5rem;box-shadow:0 4px 16px rgba(0,0,0,.25);background:${bg};color:#fff;max-width:300px;font-size:.875rem;transition:opacity .3s;`;
+    n.style.cssText = `position:fixed;top:1rem;right:1rem;z-index:999999;padding:.875rem 1.25rem;border-radius:.5rem;box-shadow:0 4px 16px rgba(0,0,0,.25);background:${bg};color:#fff;max-width:300px;font-size:.875rem;transition:opacity .3s;word-break:break-word;`;
     n.textContent = message;
     document.body.appendChild(n);
-    setTimeout(() => { if (document.body.contains(n)) { n.style.opacity = '0'; setTimeout(() => n.remove(), 300); } }, 4500);
+    setTimeout(() => {
+        if (document.body.contains(n)) {
+            n.style.opacity = '0';
+            setTimeout(() => n.remove(), 300);
+        }
+    }, 4500);
 }
 
 // ==========================================
