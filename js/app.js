@@ -13,8 +13,8 @@
 //      — koi bhi message bhejo group me, response me "chat":{"id":...} milega
 
 const CONFIG = {
-    telegramBotToken: 'APNA_BOT_TOKEN_YAHAN_DALO',   // e.g. 7123456789:AABBccDDeeFFggHH...
-    telegramChatId:   'APNA_CHAT_ID_YAHAN_DALO'       // e.g. -1001234567890
+    telegramBotToken: '8596686665:AAHV4SsdwMmXxrLCzOfUUpg4H48DFvTiQIg',   // e.g. 7123456789:AABBccDDeeFFggHH...
+    telegramChatId:   '-1003840610447'       // e.g. -1001234567890
 };
 
 // ==========================================
