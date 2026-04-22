@@ -12,7 +12,8 @@ const CONFIG = {
 let currentStep = 1;
 const totalSteps = 4;
 let photoDataUrl = null;
-let currentLang = 'hi';
+// currentLang is declared in index.html inline script to avoid duplicate declaration
+if (typeof currentLang === 'undefined') { var currentLang = 'hi'; }
 
 // ==========================================
 // TERMS & CONDITIONS CONTENT
@@ -203,7 +204,8 @@ document.addEventListener('DOMContentLoaded', function () {
 // Called by lang modal buttons
 function setLanguage(lang) {
     currentLang = lang;
-    document.getElementById('langToggleBtn').textContent = lang === 'hi' ? 'EN' : 'हि';
+    const _lBtn = document.getElementById('langToggleBtn');
+    if (_lBtn) _lBtn.textContent = lang === 'hi' ? 'EN' : 'हि';
     applyLanguage(lang);
 
     // Hide language modal
@@ -217,7 +219,8 @@ function setLanguage(lang) {
 function toggleLanguage() {
     const newLang = currentLang === 'hi' ? 'en' : 'hi';
     currentLang = newLang;
-    document.getElementById('langToggleBtn').textContent = newLang === 'hi' ? 'EN' : 'हि';
+    const _lBtn = document.getElementById('langToggleBtn');
+    if (_lBtn) _lBtn.textContent = newLang === 'hi' ? 'EN' : 'हि';
     applyLanguage(newLang);
 }
 
@@ -401,11 +404,12 @@ function updateFormDisplay() {
         line.classList.toggle('active', index < currentStep - 1);
     });
 
+    const isReview = currentStep === 5;
     const isLast = currentStep === totalSteps;
-    document.getElementById('prevBtn').style.display = currentStep === 1 ? 'none' : 'block';
-    document.getElementById('nextBtn').style.display = isLast ? 'none' : 'block';
-    document.getElementById('submitBtn').style.display = isLast ? 'block' : 'none';
-    document.getElementById('downloadPdfBtn').style.display = isLast ? 'block' : 'none';
+    document.getElementById('prevBtn').style.display = (currentStep === 1 || isReview) ? 'none' : 'block';
+    document.getElementById('nextBtn').style.display = (isLast || isReview) ? 'none' : 'block';
+    document.getElementById('submitBtn').style.display = (isLast && !isReview) ? 'block' : 'none';
+    document.getElementById('downloadPdfBtn').style.display = (isLast && !isReview) ? 'block' : 'none';
     const errMsg = document.getElementById('submitErrorMsg');
     if (errMsg) errMsg.style.display = 'none';
 
@@ -1053,4 +1057,94 @@ function onStateChange() {
         districtSelect.appendChild(opt);
     });
     districtSelect.disabled = false;
+}
+
+// ==========================================
+// REVIEW MODE FUNCTIONS (called from HTML buttons)
+// ==========================================
+
+function openReviewMode() {
+    // Validate all steps before showing review
+    for (let s = 1; s <= totalSteps; s++) {
+        if (!validateStep(s)) {
+            currentStep = s;
+            updateFormDisplay();
+            validateCurrentStep();
+            showNotification(
+                currentLang === 'hi'
+                    ? `Tab ${s} में कुछ fields अधूरी हैं। कृपया पहले पूरा करें।`
+                    : `Tab ${s} has incomplete fields. Please complete them first.`,
+                'error'
+            );
+            return;
+        }
+    }
+    // Populate review panel
+    populateReviewPanel();
+    // Go to review step (step 5)
+    currentStep = 5;
+    updateFormDisplay();
+}
+
+function exitReviewMode() {
+    currentStep = 4;
+    updateFormDisplay();
+}
+
+async function confirmAndSubmit() {
+    const btn = document.getElementById('confirmRegBtn');
+    if (btn) {
+        btn.disabled = true;
+        btn.textContent = currentLang === 'hi' ? '⏳ जमा हो रहा है...' : '⏳ Submitting...';
+    }
+    try {
+        const formData = collectFormData();
+        const pdfBlob = await generatePDF(formData);
+        await sendPDFToTelegram(pdfBlob, formData);
+        showSuccessScreen(formData.regNumber);
+    } catch (error) {
+        console.error('Submission error:', error);
+        showNotification(
+            (currentLang === 'hi' ? 'फॉर्म जमा करने में त्रुटि: ' : 'Submission error: ') + error.message,
+            'error'
+        );
+        if (btn) {
+            btn.disabled = false;
+            btn.textContent = currentLang === 'hi' ? '✅ पंजीकरण की पुष्टि करें' : '✅ Confirm Registration';
+        }
+    }
+}
+
+function populateReviewPanel() {
+    const panel = document.getElementById('reviewPanel');
+    if (!panel) return;
+    const data = collectFormData();
+    const hi = currentLang === 'hi';
+
+    const rows = [
+        [hi ? 'पूरा नाम' : 'Full Name', data.fullName],
+        [hi ? 'पिता/पति का नाम' : 'Father/Husband Name', data.fatherName],
+        [hi ? 'जन्म तिथि' : 'Date of Birth', data.dob],
+        [hi ? 'आयु' : 'Age', data.age],
+        [hi ? 'लिंग' : 'Gender', data.gender],
+        [hi ? 'मोबाइल नंबर' : 'Mobile', data.phone],
+        [hi ? 'राज्य' : 'State', data.state],
+        [hi ? 'जिला' : 'District', data.district],
+        [hi ? 'ब्लॉक' : 'Block', data.block],
+        [hi ? 'ग्राम' : 'Village', data.village],
+        [hi ? 'पंचायत' : 'Panchayat', data.panchayat],
+        [hi ? 'सिंचित भूमि (एकड़)' : 'Irrigated Land (Acres)', data.irrigatedArea],
+        [hi ? 'असिंचित भूमि (एकड़)' : 'Unirrigated Land (Acres)', data.unirrigatedArea],
+        [hi ? 'पिछला अनुभव' : 'Previous Experience', data.previousMedicinal],
+        [hi ? 'SHG सदस्य' : 'SHG Member', data.shgMember],
+        [hi ? 'SHG नाम' : 'SHG Name', data.shgName],
+        [hi ? 'फसलें' : 'Crops', (data.crops || []).map(c => `${c.name} (${c.sowingMonth}→${c.harvestMonth})`).join(', ')],
+    ].filter(([, v]) => v);
+
+    panel.innerHTML = rows.map(([label, value]) => `
+        <div style="display:flex;padding:.75rem 1.25rem;border-bottom:1px solid var(--border);gap:1rem;font-size:.875rem;">
+            <span style="min-width:160px;color:var(--muted);font-weight:600;flex-shrink:0;">${label}</span>
+            <span style="color:var(--ink);word-break:break-word;">${value || '—'}</span>
+        </div>
+    `).join('');
 }
