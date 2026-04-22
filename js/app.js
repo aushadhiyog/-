@@ -364,15 +364,17 @@ function initializePrevExpToggle() {
 // ==========================================
 function initializeForm() {
     document.getElementById('nextBtn').addEventListener('click', () => {
-        if (validateCurrentStep()) {
-            if (currentStep < totalSteps) {
-                currentStep++;
-                updateFormDisplay();
-            }
+        stepTouched[currentStep] = true;
+        checkStepCompleteness(currentStep);
+        if (currentStep < totalSteps) {
+            currentStep++;
+            updateFormDisplay();
         }
     });
 
     document.getElementById('prevBtn').addEventListener('click', () => {
+        stepTouched[currentStep] = true;
+        checkStepCompleteness(currentStep);
         if (currentStep > 1) {
             currentStep--;
             updateFormDisplay();
