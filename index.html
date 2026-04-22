@@ -1050,7 +1050,7 @@ function switchModalTermsLang(lang) {
 }
 
 // ── LANGUAGE SYSTEM ──
-let currentLang = 'hi';
+if (typeof currentLang === 'undefined') { var currentLang = 'hi'; }
 function toggleLanguageButtons() {
     const checked = document.getElementById('termsCheckbox').checked;
     document.getElementById('hindiBtn').disabled = !checked;
